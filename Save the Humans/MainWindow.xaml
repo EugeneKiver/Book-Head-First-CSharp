@@ -5,41 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Save_the_Humans"
         mc:Ignorable="d"
-        Title="Save the Humans" Height="884" Width="1000">
+        Title="Save the Humans" Height="700" Width="1000">
     <Window.Resources>
         <ControlTemplate x:Key="EnemyTemplate" TargetType="{x:Type ContentControl}">
-            <Grid>
-                <Ellipse Height="100" Stroke="#FFC227E4" Width="100" Fill="Red"/>
+            <Grid Width="50" Height="50">
+                <Ellipse Height="50" Stroke="#FFC227E4" Width="50" Fill="Red"/>
             </Grid>
         </ControlTemplate>
     </Window.Resources>
-    <Grid Width="1000" Height="868">
+    <Grid x:Name="grid" Width="1000" Height="700">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="160"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
+            <RowDefinition Height="59"/>
             <RowDefinition/>
-            <RowDefinition Height="160"/>
+            <RowDefinition Height="166"/>
         </Grid.RowDefinitions>
         <Button x:Name="startButton" Content="Start!" Grid.Row="2" Width="90" Height="48" RenderTransformOrigin="0.5,0.584" HorizontalAlignment="Center" VerticalAlignment="Center" Click="startButton_Click"/>
-        <TextBlock x:Name="textBlock" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" Text="Avoid These" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
-        <ProgressBar Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="60,24,0,0" Grid.Row="2" VerticalAlignment="Top" Width="400"/>
-        <ContentControl Template="{DynamicResource EnemyTemplate}" Content="ContentControl" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"/>
-        <Canvas x:Name="playArea" Grid.Column="1" Grid.Row="1">
+        <TextBlock x:Name="textBlock" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" Text="Avoid These" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Height="27" Width="108"/>
+        <ProgressBar x:Name="progressBar" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2" VerticalAlignment="Center" Width="600"/>
+        <ContentControl Template="{DynamicResource EnemyTemplate}" Content="ContentControl" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="50" Width="50"/>
+        <Canvas x:Name="playArea" Grid.Column="1" Grid.Row="1" MouseMove="playArea_MouseMove" MouseLeave="playArea_MouseLeave">
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF00B5FF"/>
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Canvas.Background>
-            <StackPanel x:Name="human" Orientation="Vertical">
+            <StackPanel x:Name="human" Orientation="Vertical" MouseDown="human_MouseDown">
                 <Ellipse Fill ="White" Height="10" Width="10" />
                 <Rectangle Fill ="White" Height="25" Width="10" />
             </StackPanel>
-            <Rectangle x:Name="target" Height="50" Stroke="Black" Width="50" Canvas.Left="185" Canvas.Top="54">
+            <Rectangle x:Name="target" Height="50" Stroke="Black" Width="50" Canvas.Left="185" Canvas.Top="54" MouseEnter="target_MouseEnter">
                 <Rectangle.Fill>
                     <RadialGradientBrush>
                         <GradientStop Color="Black"/>
